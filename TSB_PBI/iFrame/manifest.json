@@ -1,0 +1,14 @@
+{
+    "name": "PBI TSBSA",
+    "supportEmail": "jm@cesetti.com.ar",
+    "version": "1.0",
+    "items": [
+        {
+            "url": "https://raw.githubusercontent.com/jmcesetti/PBI_host/refs/heads/main/TSB_PBI/iFrame/BI.html",
+            "path": "tripsHistory/",
+            "menuName": "PBI TSBSA",
+            "icon": "https://cdn-icons-png.flaticon.com/512/1828/1828884.png"
+        }
+    ],
+    "isSigned": false
+}
