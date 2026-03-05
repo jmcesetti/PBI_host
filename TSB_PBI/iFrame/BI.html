@@ -6,12 +6,12 @@
     <title>PBI TSB</title>
 
     <style>
-        #tsb_iframe_container {
+        #tsb_bi_iframe_custom_01 {
             width: 100%;
             height: 98%;
         }
 
-        #tsb_message_container {
+        #tsb_bi_message_custom_01 {
             width: 100%;
             height: 98%;
             display: none;
@@ -22,6 +22,15 @@
             color: #323130;
             background-color: #ffffff;
         }
+
+        #tsb_bi_message_inner_custom_01 h2 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        #tsb_bi_message_text_custom_01 {
+            color: #605e5c;
+        }
     </style>
 
     <script>
@@ -31,24 +40,24 @@
 
                     api.getSession(function (session) {
 
-                        const usuarioActual = (session.userName || "").toLowerCase().trim();
+                        const tsbUsuarioActualCustom01 = (session.userName || "").toLowerCase().trim();
 
-                        const listaBlanca = [
+                        const tsbListaBlancaCustom01 = [
                             "ajm@cesetti.com.ar",
                             "mt@cesetti.com.ar"
                         ];
 
-                        const autorizado = listaBlanca.includes(usuarioActual);
+                        const tsbAutorizadoCustom01 = tsbListaBlancaCustom01.includes(tsbUsuarioActualCustom01);
 
-                        const iframeContainer = document.getElementById("tsb_iframe_container");
-                        const messageContainer = document.getElementById("tsb_message_container");
+                        const tsbIframeCustom01 = document.getElementById("tsb_bi_iframe_custom_01");
+                        const tsbMensajeCustom01 = document.getElementById("tsb_bi_message_custom_01");
 
-                        if (autorizado) {
-                            iframeContainer.style.display = "block";
-                            messageContainer.style.display = "none";
+                        if (tsbAutorizadoCustom01) {
+                            tsbIframeCustom01.style.display = "block";
+                            tsbMensajeCustom01.style.display = "none";
                         } else {
-                            iframeContainer.style.display = "none";
-                            messageContainer.style.display = "flex";
+                            tsbIframeCustom01.style.display = "none";
+                            tsbMensajeCustom01.style.display = "flex";
                         }
 
                         callback();
@@ -59,26 +68,24 @@
     </script>
 </head>
 
-<body>
+<body id="tsb_bi_body_custom_01">
 
-    <!-- EXACTAMENTE tu iframe original -->
     <iframe 
-        id="tsb_iframe_container"
-        title="PBI TSBSA"
+        id="tsb_bi_iframe_custom_01"
+        title="PBI_TSBSA_Custom_01"
         width="100%"
         height="98%"
         src="https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9"
         frameborder="0"
-        allowFullScreen="true">
+        allowfullscreen="true">
     </iframe>
 
-    <!-- Mensaje alternativo con mismo tamaño -->
-    <div id="tsb_message_container">
-        <div>
-            <h2 style="margin-bottom:10px;font-weight:600;">
+    <div id="tsb_bi_message_custom_01">
+        <div id="tsb_bi_message_inner_custom_01">
+            <h2 id="tsb_bi_message_title_custom_01">
                 No tiene acceso para visualizar este elemento
             </h2>
-            <div style="color:#605e5c;">
+            <div id="tsb_bi_message_text_custom_01">
                 Comuníquese con Pepe Argento
             </div>
         </div>
