@@ -7,7 +7,7 @@
             "url": "https://raw.githubusercontent.com/jmcesetti/PBI_host/refs/heads/main/TSB_PBI/iFrame/BI.html",
             "path": "tripsHistory/",
             "menuName": "PBI TSBSA",
-            "icon": "https://cdn-icons-png.flaticon.com/512/1828/1828884.png"
+            "icon": "https://github.com/jmcesetti/PBI_host/blob/main/TSB_PBI/iFrame/PowerBI_Logo.svg"
         }
     ],
     "isSigned": false
