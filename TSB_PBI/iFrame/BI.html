@@ -12,34 +12,18 @@
             width: 100%;
             display: none;
             font-family: Segoe UI, Arial, sans-serif;
-            background-color: #f3f2f1;
+            background-color: #ffffff;
         }
 
-        .container {
+        .mensaje-full {
             height: 100%;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .card {
-            background: white;
-            padding: 40px 60px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             text-align: center;
-        }
-
-        .card h2 {
-            margin: 0 0 10px 0;
-            font-weight: 600;
             color: #323130;
-        }
-
-        .card p {
-            margin: 0;
-            color: #605e5c;
+            font-size: 18px;
         }
     </style>
 
@@ -72,19 +56,20 @@
 
                         } else {
 
-                            const container = document.createElement("div");
-                            container.className = "container";
-
-                            const card = document.createElement("div");
-                            card.className = "card";
-
-                            card.innerHTML = `
-                                <h2>No tiene acceso para visualizar este elemento</h2>
-                                <p>Comuníquese con Pepe Argento</p>
+                            const mensaje = document.createElement("div");
+                            mensaje.className = "mensaje-full";
+                            mensaje.innerHTML = `
+                                <div>
+                                    <h2 style="margin-bottom:10px;font-weight:600;">
+                                        No tiene acceso para visualizar este elemento
+                                    </h2>
+                                    <div style="color:#605e5c;">
+                                        Comuníquese con Pepe Argento
+                                    </div>
+                                </div>
                             `;
 
-                            container.appendChild(card);
-                            document.body.appendChild(container);
+                            document.body.appendChild(mensaje);
                         }
 
                         document.body.style.display = "block";
