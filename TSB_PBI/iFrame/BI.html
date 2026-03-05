@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBI TSB</title>
 
-
+    <style>
+        #tsb_bi_message_container {
+            width: 100%;
+            height: 98%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Segoe UI, Arial, sans-serif;
+            color: #323130;
+            background-color: #ffffff;
+        }
+    </style>
 
     <script>
         geotab.addin.tsb_bi = function () {
@@ -13,6 +24,8 @@
                 initialize: function (api, state, callback) {
 
                     api.getSession(function (session) {
+
+                        console.log("Usuario detectado:", session);
 
                         const usuarioActual = (session.userName || "").toLowerCase().trim();
 
@@ -23,6 +36,8 @@
 
                         const autorizado = listaBlanca.includes(usuarioActual);
 
+                        document.body.innerHTML = "";
+
                         if (autorizado) {
 
                             const iframe = document.createElement("iframe");
@@ -31,7 +46,6 @@
                             iframe.height = "98%";
                             iframe.frameBorder = "0";
                             iframe.allowFullscreen = true;
-
                             iframe.src = "https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9";
 
                             document.body.appendChild(iframe);
@@ -55,14 +69,13 @@
                             document.body.appendChild(mensaje);
                         }
 
-                        callback(); // ← Siempre se ejecuta
+                        callback();
                     });
                 }
             };
         };
     </script>
 </head>
-
 <body>
 </body>
 </html>
