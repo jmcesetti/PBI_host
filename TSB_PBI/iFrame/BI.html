@@ -5,9 +5,14 @@
     <title>PBI TSB</title>
 
     <style>
-        #tsb_bi_message_container {
+        #tsb_bi_root {
             width: 100%;
             height: 98%;
+        }
+
+        #tsb_bi_message_container {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -25,8 +30,6 @@
 
                     api.getSession(function (session) {
 
-                        console.log("Usuario detectado:", session);
-
                         const usuarioActual = (session.userName || "").toLowerCase().trim();
 
                         const listaBlanca = [
@@ -36,19 +39,20 @@
 
                         const autorizado = listaBlanca.includes(usuarioActual);
 
-                        document.body.innerHTML = "";
+                        const root = document.createElement("div");
+                        root.id = "tsb_bi_root";
 
                         if (autorizado) {
 
                             const iframe = document.createElement("iframe");
                             iframe.title = "PBI TSBSA";
                             iframe.width = "100%";
-                            iframe.height = "98%";
+                            iframe.height = "100%";
                             iframe.frameBorder = "0";
                             iframe.allowFullscreen = true;
                             iframe.src = "https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9";
 
-                            document.body.appendChild(iframe);
+                            root.appendChild(iframe);
 
                         } else {
 
@@ -66,8 +70,10 @@
                                 </div>
                             `;
 
-                            document.body.appendChild(mensaje);
+                            root.appendChild(mensaje);
                         }
+
+                        document.body.appendChild(root);
 
                         callback();
                     });
