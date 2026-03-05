@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBI TSB</title>
 
     <style>
-        #tsb_bi_root {
+        #tsb_iframe_container {
             width: 100%;
             height: 98%;
         }
 
-        #tsb_bi_message_container {
+        #tsb_message_container {
             width: 100%;
-            height: 100%;
-            display: flex;
+            height: 98%;
+            display: none;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -39,41 +40,16 @@
 
                         const autorizado = listaBlanca.includes(usuarioActual);
 
-                        const root = document.createElement("div");
-                        root.id = "tsb_bi_root";
+                        const iframeContainer = document.getElementById("tsb_iframe_container");
+                        const messageContainer = document.getElementById("tsb_message_container");
 
                         if (autorizado) {
-
-                            const iframe = document.createElement("iframe");
-                            iframe.title = "PBI TSBSA";
-                            iframe.width = "100%";
-                            iframe.height = "100%";
-                            iframe.frameBorder = "0";
-                            iframe.allowFullscreen = true;
-                            iframe.src = "https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9";
-
-                            root.appendChild(iframe);
-
+                            iframeContainer.style.display = "block";
+                            messageContainer.style.display = "none";
                         } else {
-
-                            const mensaje = document.createElement("div");
-                            mensaje.id = "tsb_bi_message_container";
-
-                            mensaje.innerHTML = `
-                                <div>
-                                    <h2 style="margin-bottom:10px;font-weight:600;">
-                                        No tiene acceso para visualizar este elemento
-                                    </h2>
-                                    <div style="color:#605e5c;">
-                                        Comuníquese con Pepe Argento
-                                    </div>
-                                </div>
-                            `;
-
-                            root.appendChild(mensaje);
+                            iframeContainer.style.display = "none";
+                            messageContainer.style.display = "flex";
                         }
-
-                        document.body.appendChild(root);
 
                         callback();
                     });
@@ -82,6 +58,31 @@
         };
     </script>
 </head>
+
 <body>
+
+    <!-- EXACTAMENTE tu iframe original -->
+    <iframe 
+        id="tsb_iframe_container"
+        title="PBI TSBSA"
+        width="100%"
+        height="98%"
+        src="https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9"
+        frameborder="0"
+        allowFullScreen="true">
+    </iframe>
+
+    <!-- Mensaje alternativo con mismo tamaño -->
+    <div id="tsb_message_container">
+        <div>
+            <h2 style="margin-bottom:10px;font-weight:600;">
+                No tiene acceso para visualizar este elemento
+            </h2>
+            <div style="color:#605e5c;">
+                Comuníquese con Pepe Argento
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
