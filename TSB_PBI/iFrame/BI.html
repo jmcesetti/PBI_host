@@ -5,14 +5,16 @@
     <title>BI TSB</title>
 
     <style>
-        body {
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: none;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
         }
 
         #mensajeAcceso {
-            display: none;
             margin-top: 120px;
             font-size: 18px;
             color: red;
@@ -26,7 +28,7 @@
 
                     api.getSession(function (session) {
 
-                        const usuarioActual = session.userName.toLowerCase();
+                        const usuarioActual = (session.userName || "").toLowerCase().trim();
 
                         const listaBlanca = [
                             "ajm@cesetti.com.ar",
@@ -38,17 +40,24 @@
                         if (autorizado) {
 
                             const iframe = document.createElement("iframe");
-                            iframe.src = "TU_URL_REAL_DEL_REPORTE";
                             iframe.width = "100%";
-                            iframe.height = "900px";
+                            iframe.height = "100%";
                             iframe.frameBorder = "0";
+
+                            iframe.src = "https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9";
 
                             document.body.appendChild(iframe);
 
                         } else {
 
-                            document.getElementById("mensajeAcceso").style.display = "block";
+                            const mensaje = document.createElement("div");
+                            mensaje.id = "mensajeAcceso";
+                            mensaje.innerHTML = "<h2>No tiene acceso para visualizar este elemento</h2><p>Comuníquese con Pepe Argento</p>";
+
+                            document.body.appendChild(mensaje);
                         }
+
+                        document.body.style.display = "block";
 
                         callback();
                     });
@@ -59,11 +68,5 @@
 </head>
 
 <body>
-
-    <div id="mensajeAcceso">
-        <h2>No tiene acceso para visualizar este elemento</h2>
-        <p>Comuníquese con Pepe Argento</p>
-    </div>
-
 </body>
 </html>
