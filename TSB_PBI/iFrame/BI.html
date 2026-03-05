@@ -50,33 +50,24 @@
 
                         } else {
 
-                        const mensaje = document.createElement("div");
-                        mensaje.id = "tsb_bi_message_container";
-                        
-                        mensaje.style.width = "100%";
-                        mensaje.style.height = "98%";
-                        mensaje.style.display = "flex";
-                        mensaje.style.alignItems = "center";
-                        mensaje.style.justifyContent = "center";
-                        mensaje.style.textAlign = "center";
-                        mensaje.style.fontFamily = "Segoe UI, Arial, sans-serif";
-                        mensaje.style.backgroundColor = "#ffffff";
-                        mensaje.style.color = "#323130";
-                        
-                        mensaje.innerHTML = `
-                            <div>
-                                <h2 style="margin-bottom:10px;font-weight:600;">
-                                    No tiene acceso para visualizar este elemento
-                                </h2>
-                                <div style="color:#605e5c;">
-                                    Comuníquese con Pepe Argento
-                                </div>
-                            </div>
-                        `;
-                        
-                        document.body.appendChild(mensaje);
+                            const mensaje = document.createElement("div");
+                            mensaje.id = "tsb_bi_message_container";
 
-                        callback();
+                            mensaje.innerHTML = `
+                                <div>
+                                    <h2 style="margin-bottom:10px;font-weight:600;">
+                                        No tiene acceso para visualizar este elemento
+                                    </h2>
+                                    <div style="color:#605e5c;">
+                                        Comuníquese con Pepe Argento
+                                    </div>
+                                </div>
+                            `;
+
+                            document.body.appendChild(mensaje);
+                        }
+
+                        callback(); // ← Siempre se ejecuta
                     });
                 }
             };
