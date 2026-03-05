@@ -5,7 +5,8 @@
     "items": [
         {
             "url": "https://raw.githubusercontent.com/jmcesetti/PBI_host/refs/heads/main/TSB_PBI/iFrame/BI.html",
-            "path": "tripsHistory/",
+            "path": "ActivityLink/",
+            "category": "SafetyId/",
             "menuName": "PBI TSBSA",
             "icon": "https://github.com/jmcesetti/PBI_host/blob/main/TSB_PBI/iFrame/PowerBI_Logo.svg"
         }
