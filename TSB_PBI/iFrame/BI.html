@@ -1,11 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>BI TSB</title>
+    <script>
+        geotab.addin.tsb_bi = function () {
+            return {
+                initialize: function (api, state, callback) {
+
+                    api.getSession(function (session) {
+
+                        const usuarioActual = session.userName.toLowerCase();
+
+                        const listaBlanca = [
+                            "ajm@cesetti.com.ar",
+                            "mt@cesetti.com.ar"
+                        ];
+
+                        const autorizado = listaBlanca.includes(usuarioActual);
+
+                        if (autorizado) {
+                            document.getElementById("iframeContainer").style.display = "block";
+                        } else {
+                            document.getElementById("mensajeAcceso").style.display = "block";
+                        }
+
+                        callback();
+                    });
+                }
+            };
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #mensajeAcceso {
+            display: none;
+            margin-top: 100px;
+            font-size: 18px;
+            color: red;
+        }
+
+        #iframeContainer {
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
-    <iframe title="PBI TSBSA" width="100%" height="98%" src="https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+
+    <div id="iframeContainer">
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9"
+                width="100%"
+                height="98%"
+                frameborder="0">
+        </iframe>
+    </div>
+
+    <div id="mensajeAcceso">
+        <h2>No tiene acceso para visualizar este elemento</h2>
+        <p>Comuníquese con Pepe Argento</p>
+    </div>
+
 </body>
 </html>
