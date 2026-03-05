@@ -9,15 +9,37 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             display: none;
-            font-family: Arial, sans-serif;
+            font-family: Segoe UI, Arial, sans-serif;
+            background-color: #f3f2f1;
+        }
+
+        .container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             text-align: center;
         }
 
-        #mensajeAcceso {
-            margin-top: 120px;
-            font-size: 18px;
-            color: red;
+        .card h2 {
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            color: #323130;
+        }
+
+        .card p {
+            margin: 0;
+            color: #605e5c;
         }
     </style>
 
@@ -40,9 +62,9 @@
                         if (autorizado) {
 
                             const iframe = document.createElement("iframe");
-                            iframe.width = "100%";
-                            iframe.height = "100%";
-                            iframe.frameBorder = "0";
+                            iframe.style.width = "100%";
+                            iframe.style.height = "100%";
+                            iframe.style.border = "none";
 
                             iframe.src = "https://app.powerbi.com/view?r=eyJrIjoiMDM3N2VkNDUtMGM5Ny00NmNkLTkwOTEtNGIyMTgyZWEyYWQzIiwidCI6ImJmYWIyOTY5LTMzN2EtNDE0NS1hN2E4LTRjZjNiNTIyYjc3ZSJ9";
 
@@ -50,15 +72,22 @@
 
                         } else {
 
-                            const mensaje = document.createElement("div");
-                            mensaje.id = "mensajeAcceso";
-                            mensaje.innerHTML = "<h2>No tiene acceso para visualizar este elemento</h2><p>Comuníquese con Pepe Argento</p>";
+                            const container = document.createElement("div");
+                            container.className = "container";
 
-                            document.body.appendChild(mensaje);
+                            const card = document.createElement("div");
+                            card.className = "card";
+
+                            card.innerHTML = `
+                                <h2>No tiene acceso para visualizar este elemento</h2>
+                                <p>Comuníquese con Pepe Argento</p>
+                            `;
+
+                            container.appendChild(card);
+                            document.body.appendChild(container);
                         }
 
                         document.body.style.display = "block";
-
                         callback();
                     });
                 }
