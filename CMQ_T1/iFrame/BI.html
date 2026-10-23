@@ -1,0 +1,92 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Report</title>
+
+    <style>
+        #report-iframe {
+            width: 100%;
+            height: 98%;
+        }
+
+        #access-message {
+            width: 100%;
+            height: 98%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Segoe UI, Arial, sans-serif;
+            color: #323130;
+            background-color: #ffffff;
+        }
+
+        #message-content h2 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        #message-text {
+            color: #605e5c;
+        }
+    </style>
+
+    <script>
+        geotab.addin.report = function () {
+            return {
+                initialize: function (api, state, callback) {
+                    api.getSession(function (session) {
+                        const currentUser = (session.userName || "")
+                            .toLowerCase()
+                            .trim();
+
+                        const allowedUsers = [];
+
+                        const hasAccess = allowedUsers.length === 0 ||
+                            allowedUsers.some(function (user) {
+                                return user.toLowerCase().trim() === currentUser;
+                            });
+
+                        const reportFrame = document.getElementById("report-iframe");
+                        const accessMessage = document.getElementById("access-message");
+
+                        if (hasAccess) {
+                            reportFrame.style.display = "block";
+                            accessMessage.style.display = "none";
+                        } else {
+                            reportFrame.style.display = "none";
+                            accessMessage.style.display = "flex";
+                        }
+
+                        callback();
+                    });
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <iframe
+        id="report-iframe"
+        title="Power BI Report"
+        width="100%"
+        height="98%"
+        src="https://app.powerbi.com/reportEmbed?reportId=f47e7a91-46ca-47d8-99ea-bf03eee1aed9&autoAuth=true&ctid=bfab2969-337a-4145-a7a8-4cf3b522b77e&navContentPaneEnabled=false"
+        allowfullscreen="true">
+    </iframe>
+
+    <div id="access-message">
+        <div id="message-content">
+            <h2 id="message-title">Power BI Report</h2>
+            <div id="message-text">
+                No tiene acceso para visualizar este elemento
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
