@@ -1,0 +1,15 @@
+{
+    "name": "PBI Report",
+    "supportEmail": "jm@cesetti.com.ar",
+    "version": "1.0",
+    "items": [
+        {
+            "url": "https://raw.githubusercontent.com/jmcesetti/PBI_host/refs/heads/main/CMQ_T1/iFrame/BI.html",
+            "path": "ActivityLink/",
+            "category": "SafetyId/",
+            "menuName": "PBI Report",
+            "icon": "https://github.com/jmcesetti/PBI_host/blob/main/CMQ_T1/iFrame/align-bottom.png"
+        }
+    ],
+    "isSigned": false
+}
